@@ -1,32 +1,23 @@
 {
-  "name": "node1",
+  "name": "time_of_our_lives",
   "version": "1.0.0",
-  "description": "node testing",
-  "main": "server.js",
+  "main": "timer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "signe",
+  "license": "ISC",
   "dependencies": {
-    "logger": "^0.0.1",
-    "express": "^4.14.0",
-    "jade": "^1.11.0",
-    "colors": "^1.1.2",
-    "stylus": "^0.54.5",
-    "nib": "^1.1.2"
+    "express": "3.x"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shhhhhigne/subparsuperbar.git"
   },
-  "keywords": [
-    "node"
-  ],
-  "author": "signe",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/shhhhhigne/subparsuperbar/issues"
   },
-  "homepage": "https://github.com/shhhhhigne/subparsuperbar#readme"
+  "homepage": "https://github.com/shhhhhigne/subparsuperbar#readme",
+  "description": ""
 }
