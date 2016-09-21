@@ -9,8 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var contentLabel: UILabel!
+
+    @IBOutlet weak var serverLabel: UILabel!
+    @IBOutlet weak var apiLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
     
     var timer       = NSTimer()
     let urlLoader = MyUrlLoader()
@@ -18,10 +20,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // allows the UILabel to wrap text across multiple lines
-        contentLabel.lineBreakMode = .ByWordWrapping;
+        serverLabel.lineBreakMode = .ByWordWrapping;
         
         // allows the UILabel to display an unlimited number of lines
-        contentLabel.numberOfLines = 0;
+        serverLabel.numberOfLines = 0;
         //loadContent("http://localhost:8080")
         //let url = "http://localhost:8080"
         
@@ -34,10 +36,12 @@ class ViewController: UIViewController {
         let api = object["apiTimer"] as? Int,
         let clock = object["clock"] as? String
         else {
-                contentLabel.text = "error in dict"
+                serverLabel.text = "error in dict"
                 return
             }
-        contentLabel.text = "server has been running for \(server) seconds; the last api call was \(api) seconds ago; it is currently \(clock)"
+        serverLabel.text = "server has been running for \(server) seconds"
+        apiLabel.text = "the last api call was \(api) seconds ago"
+        clockLabel.text = "it is currently \(clock)"
 
         
        
