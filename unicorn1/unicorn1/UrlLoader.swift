@@ -10,28 +10,28 @@ import Foundation
 import UIKit
 
 protocol UrlLoader {
-    func loadContent(urlString: String) -> [String: AnyObject]
+    func loadContent(_ urlString: String) -> [String: AnyObject]
 }
 
 
 struct MyUrlLoader: UrlLoader {
-    func loadContent(urlString: String) -> [String: AnyObject] {
-        if let url = NSURL(string: urlString) {
+    func loadContent(_ urlString: String) -> [String: AnyObject] {
+        if let url = URL(string: urlString) {
             do {
-                let data = NSData(contentsOfURL: url)
-                let object = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                let data = try? Data(contentsOf: url)
+                let object = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 if let dictionary = object as? [String: AnyObject] {
                     return dictionary
                 }
             } catch {
                 let someDict:[String:String] = ["error":"could not load contents"]
-                return someDict
+                return someDict as [String : AnyObject]
             }
         } else {
             let someDict:[String:String] = ["error":"url was bad"]
-            return someDict
+            return someDict as [String : AnyObject]
         }
         let someDict:[String:String] = ["error":"url was bad"]
-        return someDict
+        return someDict as [String : AnyObject]
     }
 }

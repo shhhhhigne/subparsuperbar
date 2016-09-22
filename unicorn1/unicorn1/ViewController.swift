@@ -14,24 +14,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var apiLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     
-    var timer       = NSTimer()
+    var timer       = Timer()
     let urlLoader = MyUrlLoader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // allows the UILabel to wrap text across multiple lines
-        serverLabel.lineBreakMode = .ByWordWrapping;
+        serverLabel.lineBreakMode = .byWordWrapping;
         
         // allows the UILabel to display an unlimited number of lines
         serverLabel.numberOfLines = 0;
         //loadContent("http://localhost:8080")
         //let url = "http://localhost:8080"
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func readJSONObject(object: [String: AnyObject]) {
+    func readJSONObject(_ object: [String: AnyObject]) {
         guard let server = object["serverTimer"] as? Int,
         let api = object["apiTimer"] as? Int,
         let clock = object["clock"] as? String
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         
     }
     
-    func loadContent(timer: NSTimer) {
+    func loadContent(_ timer: Timer) {
         let content = urlLoader.loadContent("http://localhost:8080")
         readJSONObject(content)
     }
