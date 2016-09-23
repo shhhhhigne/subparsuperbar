@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var apiLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var resetNotification: UILabel!
+    @IBOutlet weak var buttonLabel: UILabel!
     
     var timer       = Timer()
     let urlLoader = MyUrlLoader()
@@ -47,6 +49,23 @@ class ViewController: UIViewController {
        
         
     }
+    
+    @IBAction func SayHello(_ sender: AnyObject) {
+        // create the alert
+        let alert = UIAlertController(title: "UIAlertController", message: "Would you like reset this timer? Well it wont actually do that but it will say Hello.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: {action in         self.resetNotification.text = "Hello"
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    @IBAction func buttonHello(_ sender: AnyObject) {
+        buttonLabel.text = "HI!"
+    }
+
     
     func loadContent(_ timer: Timer) {
         let content = urlLoader.loadContent("http://localhost:8080")
