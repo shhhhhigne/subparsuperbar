@@ -2,8 +2,22 @@ var express = require('express');
 var app = express();
 const os = require('os');
 
-var serverStartTime = os.uptime();
 var lastAPICall = -1;
+var manualTimer = 0;
+var isRunning = false;
+
+function currentTime() {
+	// var now = new Date();
+	// var time = now.getHours() + ":" + now.getMinutes() + ":" + 
+	// 					now.getSeconds() + ":" + now.getMilliseconds();
+	// return time;
+	var here = new Date();
+	var time = here.getTime();
+	return time; 
+}
+
+var serverStartTime = currentTime();
+
 
 function startTime(){
 	var now = new Date();
@@ -32,15 +46,17 @@ function startTime(){
 
 app.get('/', function(req, res) {
 	console.log('in get');
-	serverRunTime = os.uptime() - serverStartTime;
+	serverRunTime = (currentTime() - serverStartTime)/1000;
+	apiRunTime = 0;
 	if(lastAPICall == -1) {
 		apiRunTime = 0;
 	}
 	else {
-		apiRunTime = os.uptime() - lastAPICall;
+		apiRunTime = (currentTime() - lastAPICall)/1000;
 	}
+	
 	// console.log('api run = ' + apiRunTime);
-	lastAPICall = os.uptime();
+	lastAPICall = currentTime();
 	var dateTime = startTime();
 	var timers = JSON.stringify({'serverTimer' : serverRunTime,
 					'apiTimer' : apiRunTime,

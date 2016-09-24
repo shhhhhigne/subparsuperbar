@@ -29,12 +29,12 @@ class ViewController: UIViewController {
         //loadContent("http://localhost:8080")
         //let url = "http://localhost:8080"
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     func readJSONObject(_ object: [String: AnyObject]) {
-        guard let server = object["serverTimer"] as? Int,
+        guard let server = object["serverTimer"] as? Double,
         let api = object["apiTimer"] as? Int,
         let clock = object["clock"] as? String
         else {
