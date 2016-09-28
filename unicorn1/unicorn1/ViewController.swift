@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var timer       = Timer()
     let urlLoader = MyUrlLoader()
+    
+    let socket = SocketIOClient(socketURL: "localhost:8900")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +28,6 @@ class ViewController: UIViewController {
         
         // allows the UILabel to display an unlimited number of lines
         serverLabel.numberOfLines = 0;
-        //loadContent("http://localhost:8080")
-        //let url = "http://localhost:8080"
         
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,10 +44,6 @@ class ViewController: UIViewController {
         serverLabel.text = "server has been running for \(server) seconds"
         apiLabel.text = "the last api call was \(api) seconds ago"
         clockLabel.text = "it is currently \(clock)"
-
-        
-       
-        
     }
     
     @IBAction func SayHello(_ sender: AnyObject) {
