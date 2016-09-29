@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		767F932C1D9C871800920099 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 767F932B1D9C871800920099 /* SocketIO.framework */; };
 		CD546C051D67934B00F578EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD546C041D67934B00F578EE /* AppDelegate.swift */; };
 		CD546C071D67934B00F578EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD546C061D67934B00F578EE /* ViewController.swift */; };
 		CD546C0A1D67934B00F578EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD546C081D67934B00F578EE /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		767F932B1D9C871800920099 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketIO.framework; sourceTree = "<group>"; };
 		CD546C011D67934B00F578EE /* unicorn1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = unicorn1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD546C041D67934B00F578EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD546C061D67934B00F578EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,12 +33,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767F932C1D9C871800920099 /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		767F932A1D9C871800920099 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				767F932B1D9C871800920099 /* SocketIO.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		CD546BF81D67934B00F578EE = {
 			isa = PBXGroup;
 			children = (
@@ -44,6 +55,7 @@
 				CD546C021D67934B00F578EE /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		CD546C021D67934B00F578EE /* Products */ = {
 			isa = PBXGroup;
@@ -56,6 +68,7 @@
 		CD546C031D67934B00F578EE /* unicorn1 */ = {
 			isa = PBXGroup;
 			children = (
+				767F932A1D9C871800920099 /* Frameworks */,
 				CD546C041D67934B00F578EE /* AppDelegate.swift */,
 				CD546C061D67934B00F578EE /* ViewController.swift */,
 				CD546C161D6793A900F578EE /* UrlLoader.swift */,
@@ -104,7 +117,7 @@
 				};
 			};
 			buildConfigurationList = CD546BFC1D67934B00F578EE /* Build configuration list for PBXProject "unicorn1" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -259,6 +272,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/unicorn1",
+					"$(PROJECT_DIR)/unicorn1/Frameworks",
+				);
 				INFOPLIST_FILE = unicorn1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = subpar.unicorn1;
@@ -271,6 +289,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/unicorn1",
+					"$(PROJECT_DIR)/unicorn1/Frameworks",
+				);
 				INFOPLIST_FILE = unicorn1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = subpar.unicorn1;
