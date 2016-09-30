@@ -81,6 +81,23 @@ io.on('connection', function (socket) {
 	socket.on('pong', function(data) {
 		console.log(data);
 	});
+
+	serverRunTime = (currentTime() - serverStartTime)/1000;
+	apiRunTime = 0;
+	if(lastAPICall == -1) {
+		apiRunTime = 0;
+	}
+	else {
+		apiRunTime = (currentTime() - lastAPICall)/1000;
+	}
+	
+	// console.log('api run = ' + apiRunTime);
+	lastAPICall = currentTime();
+	var dateTime = startTime();
+	var timers = JSON.stringify({'serverTimer' : serverRunTime,
+					'apiTimer' : apiRunTime,
+					'clock' : dateTime});
+	socket.emit('socketJSON', timers);
 });
 
 app.get('/check', function(req,res) {

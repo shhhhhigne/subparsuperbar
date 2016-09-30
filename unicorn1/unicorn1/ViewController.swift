@@ -43,6 +43,35 @@ class ViewController: UIViewController {
 			self.socket.emit("pong", ["hello": "server"])
 		}
 		
+		socket.on("socketJSON") {data, ack in
+			print(data)
+			//let value = dictionary["helloString"]
+			//func object(forKey aKey: Any) -> Any?
+			//let server = dictionary["serverTimer"]
+			//print(server)
+			//var dictionary = data as? NSDictionary?
+			//func dictionary(forKey serverTimer: Any) -> Double?
+			
+			//let socketServer = data["serverTimer"]! as [[String : AnyObject]]
+			
+			//let socketServer = data["serverTimer"]! as Double
+			
+			let typeDict = data as? NSDictionary
+			
+			print("~*~*~*~*~*~*~ \(typeDict) ~*~*~*~*~*~*~")
+			
+			let socketServer = typeDict?.object(forKey: "serverTimer")
+			print("~*~*~*~*~*~*~ \(socketServer) ~*~*~*~*~*~*~")
+			
+			let dict = data as? [String: AnyObject]
+			print("~*~*~*~*~*~*~ \(dict) ~*~*~*~*~*~*~")
+			
+			//let server = data! as [[String : AnyObject]]
+			
+			//let server = data["serverTimer"] as? Double
+
+		}
+		
 		socket.connect()
 
 		print("checkpoint")
@@ -55,6 +84,7 @@ class ViewController: UIViewController {
 //			//readSocketJSON(data)
 //		}
     }
+	
 	
 	func readSocketJSON(_ object: [String: AnyObject]) {
 		guard let server = object["serverTimer"] as? Double,
