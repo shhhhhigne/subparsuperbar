@@ -77,6 +77,10 @@ app.get('/', function(req, res) {
 
 io.on('connection', function (socket) { 
 	console.log('socket connection')
+	socket.emit('ping', {hi: 'client'});
+	socket.on('pong', function(data) {
+		console.log(data);
+	});
 });
 
 app.get('/check', function(req,res) {

@@ -39,8 +39,8 @@ class ViewController: UIViewController {
 //			print("socket connected 1")
 //		}
 		socket.on("ping") {data, ack in
-			print(data)
-			print("hello")
+			print(data[0])
+			self.socket.emit("pong", ["hello": "server"])
 		}
 		
 		socket.connect()
