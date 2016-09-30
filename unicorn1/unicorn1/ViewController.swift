@@ -16,12 +16,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var resetNotification: UILabel!
     @IBOutlet weak var buttonLabel: UILabel!
+	@IBOutlet weak var socketServer: UILabel!
+	@IBOutlet weak var socketAPILabel: UILabel!
+	@IBOutlet weak var socketClock: UILabel!
     
     var timer       = Timer()
     let urlLoader = MyUrlLoader()
     
-    let socket = SocketIOClient(socketURL: "localhost:8900")
-
+	let socket = SocketIOClient(socketURL: URL(string: "http://localhost:8888")!, config: [.log(true), .forcePolling(true)])
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // allows the UILabel to wrap text across multiple lines
@@ -32,8 +35,40 @@ class ViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(ViewController.loadContent(_:)), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
+//		socket.on("connect") {data, ack in
+//			print("socket connected 1")
+//		}
+		socket.on("ping") {data, ack in
+			print(data)
+			print("hello")
+		}
+		
+		socket.connect()
+
+		print("checkpoint")
+	//		func socketHandler(data) {
+	//			print(data)
+	//			socket.emit("pong", {hello: server})
+		//socket.emit("connection")
+//		socket.on("socket_timer") {data,ack in
+//			print(data)
+//			//readSocketJSON(data)
+//		}
     }
-    
+	
+	func readSocketJSON(_ object: [String: AnyObject]) {
+		guard let server = object["serverTimer"] as? Double,
+			let api = object["apiTimer"] as? Int,
+			let clock = object["clock"] as? String
+			else {
+				socketServer.text = "error in dict"
+				return
+		}
+		socketServer.text = "server has been running for \(server) seconds"
+		socketAPILabel.text = "the last api call was \(api) seconds ago"
+		socketClock.text = "it is currently \(clock)"
+	}
+	
     func readJSONObject(_ object: [String: AnyObject]) {
         guard let server = object["serverTimer"] as? Double,
         let api = object["apiTimer"] as? Int,

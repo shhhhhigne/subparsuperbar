@@ -1,7 +1,12 @@
 var express = require('express');
-var app = express('http').createServer(); //I dont know about this bit at all
+var http = require('http');
 const os = require('os');
-var io = require('socket.io')(app);
+var app = express();
+var server = http.Server(app)
+var io = require('socket.io')(server);
+//var listener = 
+server.listen(8888)
+
 
 var lastAPICall = -1;
 var manualTimer = 0;
@@ -46,7 +51,7 @@ function startTime(){
 
 
 app.get('/', function(req, res) {
-	console.log((currentTime()/1000));
+	//console.log((currentTime()/1000));
 	serverRunTime = (currentTime() - serverStartTime)/1000;
 	apiRunTime = 0;
 	if(lastAPICall == -1) {
@@ -64,28 +69,14 @@ app.get('/', function(req, res) {
 					'clock' : dateTime});
 	res.setHeader('Content-Type', 'application/json');
 	res.send(timers);
+	//res.send(server)
 	// console.log('HI!');
 	// console.log('server run = ' + serverRunTime);
 
 });
 
-io.sockets.on('connection', function (socket) { 
-	serverRunTime = (currentTime() - serverStartTime)/1000;
-	apiRunTime = 0;
-	if(lastAPICall == -1) {
-		apiRunTime = 0;
-	}
-	else {
-		apiRunTime = (currentTime() - lastAPICall)/1000;
-	}
-	
-	// console.log('api run = ' + apiRunTime);
-	lastAPICall = currentTime();
-	var dateTime = startTime();
-	var timers = JSON.stringify({'serverTimer' : serverRunTime,
-					'apiTimer' : apiRunTime,
-					'clock' : dateTime}); 
-	socket.emit('socket_timer', { timers })
+io.on('connection', function (socket) { 
+	console.log('socket connection')
 });
 
 app.get('/check', function(req,res) {
@@ -93,3 +84,4 @@ app.get('/check', function(req,res) {
 });
 
 app.listen(process.env.PORT || 8080);
+

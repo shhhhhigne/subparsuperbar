@@ -14,7 +14,23 @@
 		CD546C0C1D67934B00F578EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD546C0B1D67934B00F578EE /* Assets.xcassets */; };
 		CD546C0F1D67934B00F578EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD546C0D1D67934B00F578EE /* LaunchScreen.storyboard */; };
 		CD546C171D6793A900F578EE /* UrlLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD546C161D6793A900F578EE /* UrlLoader.swift */; };
+		CD939D341D9DAB7100AC09EC /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 767F932B1D9C871800920099 /* SocketIO.framework */; };
+		CD939D351D9DAB7100AC09EC /* SocketIO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 767F932B1D9C871800920099 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CD939D361D9DAB7100AC09EC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CD939D351D9DAB7100AC09EC /* SocketIO.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		767F932B1D9C871800920099 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketIO.framework; sourceTree = "<group>"; };
@@ -34,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				767F932C1D9C871800920099 /* SocketIO.framework in Frameworks */,
+				CD939D341D9DAB7100AC09EC /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +107,7 @@
 				CD546BFD1D67934B00F578EE /* Sources */,
 				CD546BFE1D67934B00F578EE /* Frameworks */,
 				CD546BFF1D67934B00F578EE /* Resources */,
+				CD939D361D9DAB7100AC09EC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
