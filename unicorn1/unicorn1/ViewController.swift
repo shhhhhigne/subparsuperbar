@@ -85,6 +85,32 @@ class ViewController: UIViewController {
 //		}
     }
 	
+	var holdingClock = 0
+	var showingClock = 0
+	
+	@IBAction func HoldClock(_ sender: AnyObject) {
+		if holdingClock == 0 {
+			holdingClock = 1
+		}
+		else if holdingClock == 1 {
+			holdingClock = 0
+		}
+	}
+	@IBAction func showClock(_ sender: AnyObject) {
+		print("SHOWINGclock \(showingClock)")
+
+		if holdingClock == 1 {
+			showingClock = 1
+		}
+		else if holdingClock == 0 {
+			if showingClock == 0 {
+				showingClock = 1
+			}
+			else if showingClock == 1 {
+				showingClock = 0
+			}
+		}
+	}
 	
 	func readSocketJSON(_ object: [String: AnyObject]) {
 		guard let server = object["serverTimer"] as? Double,
@@ -109,7 +135,17 @@ class ViewController: UIViewController {
             }
         serverLabel.text = "server has been running for \(server) seconds"
         apiLabel.text = "the last api call was \(api) seconds ago"
-        clockLabel.text = "it is currently \(clock)"
+        //clockLabel.text = "it is currently \(clock)"
+		if showingClock == 0 {
+			print("******* SHOWINGclock \(showingClock)")
+			print("******* HOLDINGclock \(holdingClock)")
+			clockLabel.text = "Current time using interval client requests"
+		}
+		else if showingClock == 1 {
+			print("******* SHOWINGclock \(showingClock)")
+			print("******* HOLDINGclock \(holdingClock)")
+			clockLabel.text = clock
+		}
     }
     
     @IBAction func SayHello(_ sender: AnyObject) {

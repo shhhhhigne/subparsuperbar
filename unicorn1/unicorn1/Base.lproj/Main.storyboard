@@ -39,9 +39,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8T-xV-RyC">
                                 <frame key="frameInset" minY="411" width="212" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RcN-pL-xpU" appends="YES" id="YWb-oz-h1f"/>
+                                    <outletCollection property="gestureRecognizers" destination="Qju-JA-LC1" appends="YES" id="NWZ-Qz-OhG"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcx-6V-3I8">
                                 <frame key="frameInset" minX="61" minY="490" width="188" height="21"/>
@@ -106,6 +111,16 @@
                         <action selector="SayHello:" destination="BYZ-38-t0r" id="Dp6-ji-QOl"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="RcN-pL-xpU" userLabel="Show Clock">
+                    <connections>
+                        <action selector="showClock:" destination="BYZ-38-t0r" id="qbP-l7-EHY"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Qju-JA-LC1" userLabel="HoldClock">
+                    <connections>
+                        <action selector="HoldClock:" destination="BYZ-38-t0r" id="HrE-sG-ejh"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="304.80000000000001" y="413.3433283358321"/>
         </scene>
