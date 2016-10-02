@@ -19,6 +19,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var socketServer: UILabel!
 	@IBOutlet weak var socketAPILabel: UILabel!
 	@IBOutlet weak var socketClock: UILabel!
+	@IBOutlet weak var reqClockLabel: UILabel!
     
     var timer       = Timer()
     let urlLoader = MyUrlLoader()
@@ -88,29 +89,7 @@ class ViewController: UIViewController {
 	var holdingClock = 0
 	var showingClock = 0
 	
-	@IBAction func HoldClock(_ sender: AnyObject) {
-		if holdingClock == 0 {
-			holdingClock = 1
-		}
-		else if holdingClock == 1 {
-			holdingClock = 0
-		}
-	}
-	@IBAction func showClock(_ sender: AnyObject) {
-		print("SHOWINGclock \(showingClock)")
-
-		if holdingClock == 1 {
-			showingClock = 1
-		}
-		else if holdingClock == 0 {
-			if showingClock == 0 {
-				showingClock = 1
-			}
-			else if showingClock == 1 {
-				showingClock = 0
-			}
-		}
-	}
+	
 	
 	func readSocketJSON(_ object: [String: AnyObject]) {
 		guard let server = object["serverTimer"] as? Double,
@@ -123,6 +102,29 @@ class ViewController: UIViewController {
 		socketServer.text = "server has been running for \(server) seconds"
 		socketAPILabel.text = "the last api call was \(api) seconds ago"
 		socketClock.text = "it is currently \(clock)"
+	}
+	@IBAction func HoldClock(_ sender: AnyObject) {
+		print("******* HOLDINGclock \(holdingClock)")
+		if holdingClock == 0 {
+			holdingClock = 1
+		}
+		else if holdingClock == 1 {
+			holdingClock = 0
+		}
+	}
+	@IBAction func showClock(_ sender: AnyObject) {
+		print("******* HOLDINGclock \(holdingClock)")
+		if holdingClock == 1 {
+			showingClock = 1
+		}
+		else if holdingClock == 0 {
+			if showingClock == 0 {
+				showingClock = 1
+			}
+			else if showingClock == 1 {
+				showingClock = 0
+			}
+		}
 	}
 	
     func readJSONObject(_ object: [String: AnyObject]) {
@@ -137,32 +139,30 @@ class ViewController: UIViewController {
         apiLabel.text = "the last api call was \(api) seconds ago"
         //clockLabel.text = "it is currently \(clock)"
 		if showingClock == 0 {
-			print("******* SHOWINGclock \(showingClock)")
-			print("******* HOLDINGclock \(holdingClock)")
-			clockLabel.text = "Current time using interval client requests"
+			clockLabel.text = "Current time"
+			reqClockLabel.text = ""
 		}
 		else if showingClock == 1 {
-			print("******* SHOWINGclock \(showingClock)")
-			print("******* HOLDINGclock \(holdingClock)")
 			clockLabel.text = clock
+			reqClockLabel.text = "Current Time w/ Requests"
 		}
     }
     
-    @IBAction func SayHello(_ sender: AnyObject) {
-        // create the alert
-        let alert = UIAlertController(title: "UIAlertController", message: "Would you like reset this timer? Well it wont actually do that but it will say Hello.", preferredStyle: UIAlertControllerStyle.alert)
-        
-        // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: {action in         self.resetNotification.text = "Hello"
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-    }
-    @IBAction func buttonHello(_ sender: AnyObject) {
-        buttonLabel.text = "HI!"
-    }
+//    @IBAction func SayHello(_ sender: AnyObject) {
+//        // create the alert
+//        let alert = UIAlertController(title: "UIAlertController", message: "Would you like reset this timer? Well it wont actually do that but it will say Hello.", preferredStyle: UIAlertControllerStyle.alert)
+//        
+//        // add the actions (buttons)
+//        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: {action in         self.resetNotification.text = "Hello"
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+//        
+//        // show the alert
+//        self.present(alert, animated: true, completion: nil)
+//    }
+//    @IBAction func buttonHello(_ sender: AnyObject) {
+//        buttonLabel.text = "HI!"
+//    }
 
     
     func loadContent(_ timer: Timer) {
